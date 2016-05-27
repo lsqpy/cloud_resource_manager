@@ -1,21 +1,26 @@
 {
-    "name": "upfile/yii2-upfile",
-    "description": "upfile",
-    "type": "yii2-extension",
-    "keywords": ["yii2","extension"],
-    "license": "Apache-2.0",
-    "authors": [
+    "name": "cloud_resource_manager/php-sdk",
+    "description": "php-sdk cloud_resource_manager",
+    "license": "MIT",
+    "keywords": ["iamges", "sdk", "cloud", "resource"],
+    "version": "1.0.0",
+    "authors":
+    [
         {
             "name": "lsq",
-            "email": "lsqpy@163.com"
+            "email": "120337210@qq.com"
         }
     ],
-    "require": {
+    "require":
+    {
         "yiisoft/yii2": "*"
+        "php": ">=5.3.3"
     },
-    "autoload": {
+    "autoload":
+    {
         "psr-4": {
-            "upfile\\": ""
+            "crm\\": "cloud_resource_manager/crm/"
         }
     }
 }
+
