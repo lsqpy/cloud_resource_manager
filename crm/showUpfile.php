@@ -51,7 +51,8 @@ class showUpfile extends InputWidget
                 $prefixs[] = $data;
             }
         }
-        return $this->render('show',['model'=>$this->model,'marker'=>$marker,'list'=>$prefixs,'_id'=>$this->_id, 'button_name'=>$this->button_name, 'upfile_name'=>$this->upfile_name]);
+        $upload_qiniu_url = 'http://'.config\conf::$domain;
+        return $this->render('show',['upload_qiniu_url'=>$upload_qiniu_url,'model'=>$this->model,'marker'=>$marker,'list'=>$prefixs,'_id'=>$this->_id, 'button_name'=>$this->button_name, 'upfile_name'=>$this->upfile_name]);
     }
 
 

@@ -7,6 +7,7 @@ use crm\UpfileAsset;
 $delete_url = Url::to(['crm/default/delete']);
 $search_url = Url::to(['crm/default/search']);
 $upload_url = Url::to(['crm/default/upload-file']);
+$get_upload_file_name = Url::to(['upfile/default/get-upload-file-name']);
 UpfileAsset::register($this);
 $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
 ?>
@@ -33,8 +34,8 @@ $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
 <!-- Modal -->
 <div class="modal fade bs-example-modal-lg" id="<?=$_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <input type="hidden" name="marker" id="marker" value="<?=$marker?>">
-    <input type="hidden" id="domain" value="http://7xt56r.com2.z0.glb.qiniucdn.com/">
-    <input type="hidden" id="uptoken_url" value="http://www.yii.com/backend/web/index.php?r=upfile/default/get-token">
+    <input type="hidden" id="domain" value="<?=$upload_qiniu_url?>">
+    <input type="hidden" id="uptoken_url" value="<?=Url::to(['upfile/default/get-token'])?>">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <!-- 上部区域 -->
@@ -138,4 +139,6 @@ $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
     var upload_url = '<?=$upload_url?>';
     var delete_url = '<?=$delete_url?>';
     var search_url = '<?=$search_url?>';
+    var get_upload_file_name = '<?=$get_upload_file_name?>';
+    var upload_qiniu_url = '<?=$upload_qiniu_url?>';
 </script>

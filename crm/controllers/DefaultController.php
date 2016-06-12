@@ -25,13 +25,13 @@ class DefaultController extends Controller
         }
 
         //初始化Auth状态：
-        $auth = new Auth(conf::$accessKey, conf::$secretKey);
+        $auth = new Auth(config\conf::$accessKey, config\conf::$secretKey);
 
         //初始化BucketManager
         $bucketMgr = new BucketManager($auth);
 
         //删除$bucket 中的文件 $key
-        $err = $bucketMgr->delete(conf::$bucket, $key);
+        $err = $bucketMgr->delete(config\conf::$bucket, $key);
         if ($err !== null) {
             echo json_encode(['result'=>0,'data'=>$err]);
         }else{

@@ -57,7 +57,7 @@ $(function() {
                 // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
                 // 该配置必须要在 unique_names: false , save_key: false 时才生效
                 var key = "";
-                var url = "http://www.yii.com/backend/web/index.php?r=upfile/default/get-upload-file-name";
+                var url = get_upload_file_name;//"http://www.yii.com/backend/web/index.php?r=upfile/default/get-upload-file-name";
                 var str = "name="+file.name+"&id="+file.id+"&size="+file.size+"&type="+file.type;
                 $.ajax({
                     type: "GET",

@@ -163,7 +163,7 @@ FileProgress.prototype.setComplete = function(up, info) {
             var sourceLink = base_url + '/image/video.jpg';
             break;
         default:
-            var sourceLink = domain + res.key + '?imageView2/2/w/120/h/110/interlace/1/q/100'; //获取上传成功后的文件的Url
+            var sourceLink = upload_qiniu_url + '/' + res.key + '?imageView2/2/w/120/h/110/interlace/1/q/100'; //获取上传成功后的文件的Url
             break;
     }
 
