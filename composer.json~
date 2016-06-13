@@ -4,7 +4,6 @@
   "license": "MIT",
   "type": "yii2-extension",
   "keywords": ["iamges", "sdk", "cloud", "resource"],
-  "version" : "dev-master",
   "authors":
   [
     {
