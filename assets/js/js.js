@@ -4,7 +4,7 @@
 var arr=[];
 $(function(){
     $('.image_list_ul').delegate('li','click',function(){
-        var url = $(this).find('img').attr('src');
+        var url = $(this).find('img').attr('data-src');
         $(this).addClass('on').find('strong').show().end().siblings('li').removeClass('on').find('strong').hide()
         arr.shift(url);
         arr.push(url);
@@ -29,7 +29,7 @@ $(function(){
 
     $('#button').on('click',function(){
         $('#input_name').val(arr);
-        $("#img_show").html("<img src='"+arr+"'/>");
+        $("#img_show").html("<img src='"+arr+"?imageView2/2/w/120/h/110/interlace/1/q/100'/>");
         $('.close').click();
     });
 

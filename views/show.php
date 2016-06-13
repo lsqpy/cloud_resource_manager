@@ -19,6 +19,11 @@ $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
     <div class="col-sm-4 col-md-2" style="width:200px;">
         <div class="thumbnail">
             <div id="img_show" style="text-align: center;">
+                <?php
+                    if(!empty($model->$upfile_name)){
+                        echo "<img src='".$model->$upfile_name."?imageView2/2/w/120/h/110/interlace/1/q/100'/>";
+                    }
+                ?>
             </div>
             <div class="caption" style="text-align: center;">
                 <p>
@@ -86,11 +91,11 @@ $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
                                                             $pic = $base_url . '/image/video.jpg';
                                                             break;
                                                         default:
-                                                            $pic = $_list['link'] . '?imageView2/2/w/120/h/110/interlace/1/q/100'; //获取上传成功后的文件的Url
+                                                            $pic = $_list['link'];// . '?imageView2/2/w/120/h/110/interlace/1/q/100'; //获取上传成功后的文件的Url
                                                             break;
                                                     }
                                                 ?>
-                                                <img src="<?=$pic;?>">
+                                                <img data-src="<?=$pic;?>" src="<?=$pic.'?imageView2/2/w/120/h/110/interlace/1/q/100';?>">
                                                 <span><?=$_list['key']?></span>
                                                 <strong class="glyphicon glyphicon-ok-circle" aria-hidden="true"></strong>
                                             </div>
