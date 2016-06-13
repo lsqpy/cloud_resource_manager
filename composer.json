@@ -22,7 +22,7 @@
   "autoload":
   {
     "psr-4": {
-      "crm\\": "cloud_resource_manager/crm/"
+      "crm\\": "crm/"
     }
   }
 }
