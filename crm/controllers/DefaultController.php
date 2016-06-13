@@ -84,8 +84,8 @@ class DefaultController extends Controller
      * 获取七牛token
      */
     public function actionGetToken(){
-        $auth = new Auth(conf::$accessKey, conf::$secretKey);
-        $upToken = $auth->uploadToken(conf::$bucket);
+        $auth = new Auth(config\conf::$accessKey, config\conf::$secretKey);
+        $upToken = $auth->uploadToken(config\conf::$bucket);
         if(!empty($upToken)){
             echo json_encode(['uptoken'=>$upToken]);
         }

@@ -2,8 +2,9 @@
   "name": "cloud_resource_manager/php-sdk",
   "description": "php-sdk cloud_resource_manager",
   "license": "MIT",
+  "type": "yii2-extension",
   "keywords": ["iamges", "sdk", "cloud", "resource"],
-  "version": "5.0.0",
+  "version": "3.0.0",
   "authors":
   [
     {
@@ -13,7 +14,10 @@
   ],
   "require":
   {
-    "php": ">=5.3.3"
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+    "qiniu/php-sdk": "^7.0"
   },
   "autoload":
   {
