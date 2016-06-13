@@ -8,9 +8,11 @@
   [
     {
       "name": "lsq",
-      "email": "120337210@qq.com"
+      "email": "120337210@qq.com",
+      "homepage": "http://www.baidu.com" 	
     }
   ],
+  "minimum-stability": "dev",
   "require":
   {
     "php": ">=5.4.0"
