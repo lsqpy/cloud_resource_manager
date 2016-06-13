@@ -1,5 +1,5 @@
 {
-  "name": "cloud_resource_manager/php-sdk",
+  "name": "cloud_resource_manager/crm",
   "description": "php-sdk cloud_resource_manager",
   "license": "MIT",
   "type": "yii2-extension",
@@ -22,7 +22,7 @@
   "autoload":
   {
     "psr-4": {
-      "crm\\": "crm"
+      "crm\\": "cloud_resource_manager/crm"
     }
   }
 }
