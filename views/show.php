@@ -4,10 +4,10 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use crm\UpfileAsset;
 
-$delete_url = Url::to(['crm/default/delete']);
-$search_url = Url::to(['crm/default/search']);
-$upload_url = Url::to(['crm/default/upload-file']);
-$get_upload_file_name = Url::to(['crm/default/get-upload-file-name']);
+$delete_url = Url::to(['/crm/default/delete']);
+$search_url = Url::to(['/crm/default/search']);
+$upload_url = Url::to(['/crm/default/upload-file']);
+$get_upload_file_name = Url::to(['/crm/default/get-upload-file-name']);
 UpfileAsset::register($this);
 $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
 ?>
@@ -52,7 +52,7 @@ $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
 <div class=" modal fade bs-example-modal-lg" id="<?=$_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <input type="hidden" name="marker" id="marker" value="<?=$marker?>">
     <input type="hidden" id="domain" value="<?=$upload_qiniu_url?>">
-    <input type="hidden" id="uptoken_url" value="<?=Url::to(['crm/default/get-token'])?>">
+    <input type="hidden" id="uptoken_url" value="<?=Url::to(['/crm/default/get-token'])?>">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <!-- 上部区域 -->
