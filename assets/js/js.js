@@ -83,4 +83,12 @@ $(function(){
         $("#img_show").html("");
         $("#input_name").val("");
     });
+
+
+    /**
+     * 为了解决bootstrap模态框无法触发input=file点击bug
+     */
+    $("#pickfiles").on("click",function(){
+        var id = $(this).parents('#container').find("input[type=file]").click();
+    })
 });

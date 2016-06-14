@@ -19,10 +19,9 @@ $(function() {
         auto_start: true,
         unique_names: false ,
         save_key: false,
-        //log_level: 5,
         init: {
             'FilesAdded': function(up, files) {
-                $("#fsUploadProgress").show();
+                $("#progress").show();
                 plupload.each(files, function(file) {
                     var progress = new FileProgress(file, 'fsUploadProgress');
                     progress.setStatus("等待...");
@@ -42,8 +41,7 @@ $(function() {
                 progress.setProgress(file.percent + "%", file.speed, chunk_size);
             },
             'UploadComplete': function() {
-                $("#fsUploadProgress").html("");
-                $("#fsUploadProgress").hide();
+                //$('#success').show();
             },
             'FileUploaded': function(up, file, info) {
                 var progress = new FileProgress(file, 'fsUploadProgress');
@@ -54,28 +52,27 @@ $(function() {
                 var progress = new FileProgress(err.file, 'fsUploadProgress');
                 progress.setError();
                 progress.setStatus(errTip);
+            },
+            'Key': function(up, file) {
+                // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+                // 该配置必须要在 unique_names: false , save_key: false 时才生效
+                var key = "";
+                var url = get_upload_file_name;//"http://www.yii.com/backend/web/index.php?r=upfile/default/get-upload-file-name";
+                var str = "name="+file.name+"&id="+file.id+"&size="+file.size+"&type="+file.type;
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    data: str,
+                    async: false,
+                    dataType:'json',
+                    success: function(data){
+                        key = data.keyname;
+                    }
+                });
+
+                // do something with key here
+                return key
             }
-            //,
-            //'Key': function(up, file) {
-            //    // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
-            //    // 该配置必须要在 unique_names: false , save_key: false 时才生效
-            //    var key = "";
-            //    var url = get_upload_file_name;//"http://www.yii.com/backend/web/index.php?r=upfile/default/get-upload-file-name";
-            //    var str = "name="+file.name+"&id="+file.id+"&size="+file.size+"&type="+file.type;
-            //    $.ajax({
-            //        type: "GET",
-            //        url: url,
-            //        data: str,
-            //        async: false,
-            //        dataType:'json',
-            //        success: function(data){
-            //            key = data.keyname;
-            //        }
-            //    });
-            //
-            //    // do something with key here
-            //    return key
-            //}
         }
     });
 

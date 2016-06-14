@@ -14,6 +14,18 @@ $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
 
 <!-- Button trigger modal -->
 
+<style>
+    #fsUploadProgress{
+        width: 96%;
+        position: absolute;
+        right: 36px;
+        top: 35px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        z-index: 3;
+        display: none;
+    }
+</style>
 
 <div class="row">
     <div class="col-sm-4 col-md-2" style="width:200px;">
@@ -27,8 +39,8 @@ $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
             </div>
             <div class="caption" style="text-align: center;">
                 <p>
-                    <a href="javascript:void(0);" class="btn btn-primary" role="button" data-toggle="modal" data-target="#<?=$_id?>"><?=$button_name?></a>
-                    <a href="javascript:void(0);" class="btn btn-default" role="button" id="img_remove">移除</a>
+                    <a href="###" class="btn btn-primary" role="button" data-toggle="modal" data-target="#<?=$_id?>"><?=$button_name?></a>
+                    <a href="###" class="btn btn-default" role="button" id="img_remove">移除</a>
                 </p>
             </div>
         </div>
@@ -36,8 +48,8 @@ $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
 </div>
 
 <?= Html::activeHiddenInput($model,$upfile_name,['id'=>'input_name']) ?>
-<!-- Modal -->
-<div class="modal fade bs-example-modal-lg" id="<?=$_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!-- Modal modal fade  -->
+<div class=" modal fade bs-example-modal-lg" id="<?=$_id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <input type="hidden" name="marker" id="marker" value="<?=$marker?>">
     <input type="hidden" id="domain" value="<?=$upload_qiniu_url?>">
     <input type="hidden" id="uptoken_url" value="<?=Url::to(['crm/default/get-token'])?>">
@@ -63,11 +75,12 @@ $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
 
                     <!-- 中间区域 -->
                     <div class="col-md-10">
-                        <div id="container" style="top: 9px;left:10px;">
-                            <a class="btn btn-default btn-lg " id="pickfiles" href="#" >
+                        <div id="container" style="top: 9px;left:10px;height: 26px;">
+                            <a class="btn btn-primary" id="pickfiles" href="###" style="position: absolute;right:40px;" >
                                 <i class="glyphicon glyphicon-plus"></i>
                                 <span>选择文件</span>
                             </a>
+                            <div id="fsUploadProgress"></div>
                         </div>
                         <div id="container" class="image_list_div">
                             <ul class="image_list_ul">
@@ -120,15 +133,6 @@ $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
             <!-- 上传组件 -->
             <div class="modal-footer">
                 <div id="container" style="text-align: center;">
-                    <div class="info" id="progress">
-                        <div class="progress progress-striped">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuemax="100" aria-valuenow="99" aria-valuein="0" style="width: 0%;">
-                                <span class="sr-only"></span>
-                            </div>
-                        </div>
-                        <div class="status text-left">已上传: 0 KB 上传速度： 0 KB/s</div>
-                    </div>
-
                     <input type="button" class="btn btn-primary" id="btn_upload" value="取消选择">
                     <input type="button" class="btn btn-primary" id="button" disabled="disabled" value="确定选择">
                 </div>

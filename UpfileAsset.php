@@ -27,7 +27,7 @@ class UpfileAsset extends AssetBundle
 
     public $js = [
         'js/js.js',
-        'js/plupload.full.min.js',
+//        'js/plupload.full.min.js',
         'js/moxie.js',
         'js/plupload.dev.js',
         'js/zh_CN.js',

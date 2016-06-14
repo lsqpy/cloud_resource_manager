@@ -1,65 +1,25 @@
 /*global plupload */
 /*global qiniu */
 function FileProgress(file, targetID) {
-    this.fileProgressID = file.id;
-    this.file = file;
+    /**/
+    //this.fileProgressID = file.id;
+    this.fileProgressID = 'progress';
     console.log(targetID);
+    this.file = file;
+
     this.opacity = 100;
     this.height = 0;
     this.fileProgressWrapper = $('#' + this.fileProgressID);
     if (!this.fileProgressWrapper.length) {
-        // <div class="progress">
-        //   <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-        //     <span class="sr-only">20% Complete</span>
-        //   </div>
-        // </div>
-        //创建外层div
-        this.fileProgressWrapper = $("<ul style='list-style:none;margin:5px 10px;padding:0;'></ul>");
-        var Wrappeer = this.fileProgressWrapper;
-        Wrappeer.attr('id', this.fileProgressID).addClass('progressContainer');
-
-        var progressText = $("<li style='width:37%;float:left;'></li>");
-        progressText.addClass('progressName').text(file.name);
-
-
-        var fileSize = plupload.formatSize(file.size).toUpperCase();
-        var progressSize = $("<li style='width:8%;float:left;'></li>");
-        progressSize.addClass("progressFileSize").text(fileSize);
-
-        var progressBarTd = $("<li style='width:55%;float:left;'></li>");
-        var progressBarBox = $("<div/>");
-        progressBarBox.addClass('info');
-        var progressBarWrapper = $("<div/>");
-        progressBarWrapper.addClass("progress progress-striped");
-
-        var progressBar = $("<div/>");
-        progressBar.addClass("progress-bar progress-bar-info")
-            .attr('role', 'progressbar')
-            .attr('aria-valuemax', 100)
-            .attr('aria-valuenow', 0)
-            .attr('aria-valuein', 0)
-            .width('0%');
-
-        var progressBarPercent = $('<span class=sr-only />');
-        progressBarPercent.text(fileSize);
-
-        //var progressCancel = $('<a href=javascript:; />');
-        //progressCancel.show().addClass('progressCancel').text('×');
-
-        progressBar.append(progressBarPercent);
-        progressBarWrapper.append(progressBar);
-        progressBarBox.append(progressBarWrapper);
-        //progressBarBox.append(progressCancel);
-
-        var progressBarStatus = $('<div class="status text-center"/>');
-        progressBarBox.append(progressBarStatus);
-        progressBarTd.append(progressBarBox);
-
-        Wrappeer.append(progressText);
-        Wrappeer.append(progressSize);
-        Wrappeer.append(progressBarTd);
-
-        $('#' + targetID).append(Wrappeer);
+        var html = '<div class="info">';
+            html += '<div class="progress progress-striped">';
+            html += '<div class="progress-bar progress-bar-info" role="progressbar" aria-valuemax="100" aria-valuenow="0" aria-valuein="0" style="width: 0%;">';
+            html += '<span class="sr-only"></span>';
+            html += '</div>';
+            html += '</div>';
+            html += '<div class="status text-left">已上传: 0 KB 上传速度： 0 KB/s</div>';
+            html += '</div>';
+        $("#progress").append(html);
     } else {
         this.reset();
     }
