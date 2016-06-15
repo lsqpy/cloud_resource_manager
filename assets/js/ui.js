@@ -205,11 +205,13 @@ FileProgress.prototype.setComplete = function(up, info) {
             var sourceLink = base_url + '/image/video.jpg';
             break;
         default:
-            var sourceLink = upload_qiniu_url + '/' + res.key + '?imageView2/2/w/120/h/110/interlace/1/q/100'; //获取上传成功后的文件的Url
+            var sourceLink = upload_qiniu_url + '/' + res.key; //获取上传成功后的文件的Url
             break;
     }
 
-    var html = "<li><div class='div_center'><a href='javascript:void(0);'>X</a><img src='"+sourceLink+"'><span>"+res.key+"</span><strong class='glyphicon glyphicon-ok-circle' aria-hidden='true'></strong></div></li>";
+    var minSourceLink = sourceLink + '?imageView2/2/w/120/h/110/interlace/1/q/100'
+
+    var html = "<li><div class='div_center'><a href='javascript:void(0);'>X</a><img data-src='"+sourceLink+"' src='"+minSourceLink+"'><span>"+res.key+"</span><strong class='glyphicon glyphicon-ok-circle' aria-hidden='true'></strong></div></li>";
     $('.image_list_ul').append(html);
 
 };

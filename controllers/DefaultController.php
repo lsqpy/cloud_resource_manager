@@ -6,7 +6,7 @@ use Qiniu\Storage\BucketManager;
 use yii;
 use Qiniu\Auth;
 use yii\web\Controller;
-use crm\config;
+
 
 /**
  * Default controller for the `upfile` module
@@ -14,6 +14,18 @@ use crm\config;
  */
 class DefaultController extends Controller
 {
+
+    public $accessKey;
+    public $secretKey;
+    public $domain;
+    public $bucket;
+
+    public function init(){
+        $this->accessKey = Yii::$app->getModule('crm')->accessKey;
+        $this->secretKey = Yii::$app->getModule('crm')->secretKey;
+        $this->domain = Yii::$app->getModule('crm')->domain;
+        $this->bucket = Yii::$app->getModule('crm')->bucket;
+    }
 
     /**
      * 删除文件
@@ -25,13 +37,13 @@ class DefaultController extends Controller
         }
 
         //初始化Auth状态：
-        $auth = new Auth(config\conf::$accessKey, config\conf::$secretKey);
+        $auth = new Auth($this->accessKey, $this->secretKey);
 
         //初始化BucketManager
         $bucketMgr = new BucketManager($auth);
 
         //删除$bucket 中的文件 $key
-        $err = $bucketMgr->delete(config\conf::$bucket, $key);
+        $err = $bucketMgr->delete($this->bucket, $key);
         if ($err !== null) {
             echo json_encode(['result'=>0,'data'=>$err]);
         }else{
@@ -49,9 +61,9 @@ class DefaultController extends Controller
      */
     public function actionSearch($prefix='', $marker='', $bucket='', $limit='20')
     {
-        $auth = new Auth(config\conf::$accessKey, config\conf::$secretKey);
+        $auth = new Auth($this->accessKey, $this->secretKey);
         $bucketMgr = new BucketManager($auth);
-        list($list, $marker, $err) = $bucketMgr->listFiles(config\conf::$bucket, $prefix, $marker, $limit);
+        list($list, $marker, $err) = $bucketMgr->listFiles($this->bucket, $prefix, $marker, $limit);
 
         $data = [];
         if(!empty($list)){
@@ -69,7 +81,7 @@ class DefaultController extends Controller
                         $pic = $base_url . '/image/video.jpg';
                         break;
                     default:
-                        $pic = 'http://'.config\conf::$domain.'/'.$_data['key'] . '?imageView2/2/w/120/h/110/interlace/1/q/100'; //获取上传成功后的文件的Url
+                        $pic = 'http://'.$this->domain.'/'.$_data['key'] . '?imageView2/2/w/120/h/110/interlace/1/q/100'; //获取上传成功后的文件的Url
                         break;
                 }
                 $data[] = "<li><div class='div_center'><a href='javascript:void(0);'>X</a><img src='".$pic."'><span>".$_data['key']."</span><strong class='glyphicon glyphicon-ok-circle' aria-hidden='true'></strong></div></li>";
@@ -84,8 +96,8 @@ class DefaultController extends Controller
      * 获取七牛token
      */
     public function actionGetToken(){
-        $auth = new Auth(config\conf::$accessKey, config\conf::$secretKey);
-        $upToken = $auth->uploadToken(config\conf::$bucket);
+        $auth = new Auth($this->accessKey, $this->secretKey);
+        $upToken = $auth->uploadToken($this->bucket);
         if(!empty($upToken)){
             echo json_encode(['uptoken'=>$upToken]);
         }
