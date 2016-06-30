@@ -15,6 +15,41 @@ $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
 <!-- Button trigger modal -->
 
 <style>
+    .img_ul{
+        /*padding: 20px;*/
+    }
+    .img_ul li{
+        list-style-type:none;
+        width: 120px;
+        height: 110px;
+        /*overflow: hidden;*/
+        text-align: center;
+        margin: 0px 5px;
+        float:left;
+        position: relative;
+    }
+    .img_ul li img{
+        display:block;
+        width:100%;
+        height: auto;
+    }
+    .img_ul li a{
+        position: absolute;
+        top: -11px;
+        right: -9px;
+        width: 20px;
+        height: 20px;
+        z-index: 2;
+        border:1px solid #000;
+        border-radius: 50%;
+        background-color: #000;
+        filter:alpha(opacity=70);
+        -moz-opacity:0.7;
+        opacity:0.7;
+        text-align: center;
+        color: #fff;
+        line-height: 19px;
+    }
     #fsUploadProgress{
         width: 96%;
         position: absolute;
@@ -30,12 +65,14 @@ $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
 <div class="row">
     <div class="col-sm-4 col-md-2" style="width:200px;">
         <div class="thumbnail">
-            <div id="img_show" style="text-align: center;">
-                <?php
+            <div id="img_show" style="text-align: center;overflow-x:auto;">
+                <ul class="img_ul" style="text-align: center;">
+                    <?php
                     if(!empty($model->$upfile_name)){
-                        echo "<img src='".$model->$upfile_name."?imageView2/2/w/120/h/110/interlace/1/q/100'/>";
+                        echo "<li><a href='javascript:void(0);'>X</a><div style='width: 120px;height: 110px;overflow: hidden'><img src='".$model->$upfile_name."?imageView2/2/w/120/h/110/interlace/1/q/100'/></div>></li>";
                     }
-                ?>
+                    ?>
+                </ul>
             </div>
             <div class="caption" style="text-align: center;">
                 <p>
@@ -150,4 +187,5 @@ $base_url = Yii::$app->assetManager->getPublishedUrl('@crm/assets');
     var search_url = '<?=$search_url?>';
     var get_upload_file_name = '<?=$get_upload_file_name?>';
     var upload_qiniu_url = '<?=$upload_qiniu_url?>';
+    var config_json = '<?=$config_json?>';
 </script>

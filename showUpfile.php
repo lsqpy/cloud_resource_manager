@@ -22,6 +22,7 @@ class showUpfile extends InputWidget
     public $secretKey;
     public $domain;
     public $bucket;
+    public $select_more;
 
     public function init()
     {
@@ -29,6 +30,7 @@ class showUpfile extends InputWidget
         $this->secretKey = Yii::$app->getModule('crm')->secretKey;
         $this->domain = Yii::$app->getModule('crm')->domain;
         $this->bucket = Yii::$app->getModule('crm')->bucket;
+        $this->select_more = Yii::$app->getModule('crm')->select_more;
 
         if($this->_id == null){
             $this->_id = "myModal";
@@ -62,7 +64,16 @@ class showUpfile extends InputWidget
             }
         }
         $upload_qiniu_url = 'http://'.$this->domain;
-        return $this->render('show',['upload_qiniu_url'=>$upload_qiniu_url,'model'=>$this->model,'marker'=>$marker,'list'=>$prefixs,'_id'=>$this->_id, 'button_name'=>$this->button_name, 'upfile_name'=>$this->upfile_name]);
+        return $this->render('show',[
+            'upload_qiniu_url'=>$upload_qiniu_url,
+            'model'=>$this->model,
+            'marker'=>$marker,
+            'list'=>$prefixs,
+            '_id'=>$this->_id,
+            'button_name'=>$this->button_name,
+            'upfile_name'=>$this->upfile_name,
+            'config_json'=>json_encode(['select_more'=>$this->select_more])
+        ]);
     }
 
 
